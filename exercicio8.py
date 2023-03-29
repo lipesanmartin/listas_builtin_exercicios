@@ -6,7 +6,7 @@ alturas = []
 for pessoa in range(5):
     altura = float(input(f"Insira a altura da {pessoa + 1}ª pessoa: "))
     alturas.append(altura)
-    idade = float(input(f"Insira a idade da {pessoa + 1}ª pessoa: "))
+    idade = int(input(f"Insira a idade da {pessoa + 1}ª pessoa: "))
     idades.append(idade)
 
 print("Idades:", idades)
