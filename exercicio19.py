@@ -32,7 +32,7 @@ from tabulate import tabulate
 
 lista_sistemas = ["Windows Server", "Unix", "Linux", "Netware", "Mac OS", "Outro"]
 lista_votos = []
-lista_resultados = [["Sistema Operacional", "Votos", "%"]]
+tabela_resultados = [["Sistema Operacional", "Votos", "%"]]
 
 print("Qual o melhor Sistema Operacional para uso em servidores?")
 while True:
@@ -58,9 +58,9 @@ for x in range(6):
     lis = [lista_sistemas[x], lista_votos.count(x + 1)]
     porcentagem = str(round((numero_de_votos[x] / len(lista_votos)) * 100)) + '%'
     lis.append(porcentagem)
-    lista_resultados.append(lis)
-lista_resultados.append(["Total", len(lista_votos)])
-print(tabulate(lista_resultados, headers='firstrow', tablefmt='fancy_grid'))
+    tabela_resultados.append(lis)
+tabela_resultados.append(["Total", len(lista_votos)])
+print(tabulate(tabela_resultados, headers='firstrow', tablefmt='fancy_grid'))
 print(
     f"O sistema operacional mais votado foi o {lista_sistemas[ganhador]}, com {lista_votos.count(ganhador + 1)} votos,"
     f" correspondendo a {int((numero_de_votos[ganhador] / len(lista_votos)) * 100)}% dos votos.")
