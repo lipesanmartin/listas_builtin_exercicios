@@ -35,7 +35,7 @@ lista_votos = []
 tabela_resultados = [["Sistema Operacional", "Votos", "%"]]
 
 print("Qual o melhor Sistema Operacional para uso em servidores?")
-while True:
+while True:  # entrada de dados
     for x in range(6):
         print(f"{x + 1}- {lista_sistemas[x]}")
     voto = int(input())
@@ -46,6 +46,7 @@ while True:
     else:
         print("Valor inválido. Digite 1 a 6 ou 0 para sair.")
 
+#  contagem de votos para cada sistema
 numero_de_votos = []
 for x in range(6):
     contador = lista_votos.count(x + 1)
