@@ -40,6 +40,9 @@
 # 9               4               50,0%
 # 10              3               37,5%
 # 11              1               12,5%
+# O melhor jogador foi o número 9, com 4 votos, correspondendo a 50% do total de votos.
+
+
 from tabulate import tabulate
 
 lista_votos = []
@@ -61,10 +64,15 @@ for x in range(23):
     a = lista_votos.count(x + 1)
     lista_jogadores_votados.append(a)
 
+mais_votos = max(lista_jogadores_votados)
+melhor_jogador = lista_jogadores_votados.index(mais_votos)
+
 for x in range(23):
     linha_tab = [x + 1, lista_jogadores_votados[x]]
-    porcentagem = (lista_jogadores_votados[x] / len(lista_votos) * 100)
+    porcentagem = f'{(lista_jogadores_votados[x] / len(lista_votos) * 100):.2f}' + '%'
     linha_tab.append(porcentagem)
     tabela_resultados.append(linha_tab)
 
 print(tabulate(tabela_resultados, headers='firstrow', tablefmt='rst'))
+print(f"O melhor jogador foi o número {melhor_jogador + 1}, com {mais_votos} votos, correspondendo a "
+      f"{(mais_votos / len(lista_votos)) * 100:.2f} do total de votos.")
