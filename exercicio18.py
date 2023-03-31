@@ -59,13 +59,17 @@ while True:
             print("Informe um valor entre 1 e 23 ou 0 para sair!")
     except ValueError:
         print("Informe um valor entre 1 e 23 ou 0 para sair!")
-
+# cria a lista de quantos votos cada jogador recebeu
 for x in range(23):
     a = lista_votos.count(x + 1)
     lista_jogadores_votados.append(a)
 
+# cria a lista com os melhores jogadores
 mais_votos = max(lista_jogadores_votados)
-melhor_jogador = lista_jogadores_votados.index(mais_votos)
+melhor_jogador = []
+for x in range(23):
+    if lista_jogadores_votados[x] == mais_votos:
+        melhor_jogador.append(str(x + 1))
 
 for x in range(23):
     linha_tab = [x + 1, lista_jogadores_votados[x]]
@@ -73,6 +77,7 @@ for x in range(23):
     linha_tab.append(porcentagem)
     tabela_resultados.append(linha_tab)
 
+print(f"Resultado da votação:\n\nForam computados {len(lista_votos)} votos.\n")
 print(tabulate(tabela_resultados, headers='firstrow', tablefmt='rst'))
-print(f"O melhor jogador foi o número {melhor_jogador + 1}, com {mais_votos} votos, correspondendo a "
-      f"{(mais_votos / len(lista_votos)) * 100:.2f} do total de votos.")
+print("O melhor jogador foi o número " + ', '.join(melhor_jogador) +
+      f", com {mais_votos} votos, correspondendo a {(mais_votos / len(lista_votos)) * 100:.2f}% do total de votos.")
