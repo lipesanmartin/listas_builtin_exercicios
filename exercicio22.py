@@ -35,16 +35,16 @@ while True:
             break
         elif entrada in range(1, 5):
             lista_entradas.append(entrada)
+            mouse += 1
         else:
             print("Insira um valor de 1 a 4 (0 para finalizar)")
     except ValueError:
         print("Insira um valor de 1 a 4 (0 para finalizar)")
-    mouse += 1
+
 
 lista_quantidades = []  # quantidade de cada problema
 for a in range(1, 5):
     lista_quantidades.append(lista_entradas.count(a))
-print(lista_quantidades)
 
 lista_percentual = []  # percentuais de ocorrencia
 for b in range(4):
@@ -54,4 +54,5 @@ for b in range(4):
 for c in range(4):
     tabela.append([f'{c + 1}- ' + lista_problemas[c], lista_quantidades[c], lista_percentual[c]])
 
+print(f"Quantidade de mouses: {len(lista_entradas)}")
 print(tabulate(tabela, headers='firstrow', tablefmt='mixed_outline'))
