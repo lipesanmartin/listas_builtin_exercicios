@@ -16,5 +16,5 @@ for x in medias:
     if x >= 7:
         passou += 1
 print("Medias:", medias)
-print(f"A media de {passou} alunos é maior ou igual a 7.0.")
+print(f"A media de {passou} aluno(s) é maior ou igual a 7.0.")
 

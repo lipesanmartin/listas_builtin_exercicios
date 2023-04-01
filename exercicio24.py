@@ -10,8 +10,8 @@ for x in range(100):
     resultados.append(jogar_dado)
 
 ocorrencias = []
-for x in range(6):
-    contador = resultados.count(x + 1)
+for x in range(1, 7):
+    contador = resultados.count(x)
     ocorrencias.append(contador)
 
 print(resultados)
