@@ -41,16 +41,17 @@ while True:
         print("Insira um valor de 1 a 4 (0 para finalizar)")
     mouse += 1
 
+lista_quantidades = []  # quantidade de cada problema
+for a in range(1, 5):
+    lista_quantidades.append(lista_entradas.count(a))
+print(lista_quantidades)
 
-print(lista_entradas)  # lista de entradas feita, continuar daqui
+lista_percentual = []  # percentuais de ocorrencia
+for b in range(4):
+    percentual = f'{(lista_quantidades[b] / len(lista_entradas)) * 100:.1f} %'
+    lista_percentual.append(percentual)
 
+for c in range(4):
+    tabela.append([f'{c + 1}- ' + lista_problemas[c], lista_quantidades[c], lista_percentual[c]])
 
-
-
-
-
-
-
-
-
-
+print(tabulate(tabela, headers='firstrow', tablefmt='mixed_outline'))
