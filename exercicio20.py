@@ -56,7 +56,8 @@ while True:
         abono = salario * 0.2
         if abono < 100:
             abono = 100
-        lista_abonos.append(round(abono, 2))
+        abo = round(abono, 2)
+        lista_abonos.append(abo)
     except ValueError:
         print("Erro. Tente novamente.")
 
