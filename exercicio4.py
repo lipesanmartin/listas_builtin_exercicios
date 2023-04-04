@@ -7,7 +7,7 @@ for x in range(10):
     lis.append(elemento)
 
 for x in range(10):
-    if lis[x] not in "aeiou":
+    if lis[x] not in "AaEeIiOoUu":
         print(lis[x])
         cons += 1
 print(f"Existem {cons} consoantes no vetor {lis}.")
