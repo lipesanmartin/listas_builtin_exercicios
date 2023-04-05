@@ -10,7 +10,7 @@
 # rosemary        789456125
 #
 # Neste arquivo, o nome do usuário possui 15 caracteres. A partir deste arquivo, você deve criar um programa que
-# gere um relatório, chamado "relatório.txt", no seguinte formato:
+# gere um relatório, chamado "relatorio.txt", no seguinte formato:
 # ACME Inc.               Uso do espaço em disco pelos usuários
 # ------------------------------------------------------------------------
 # Nr.  Usuário        Espaço utilizado     % do uso
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     lista_usuarios = []
     lista_espaco_utilizado = []
 
-    with open("usuários.txt", "r") as usuarios:
+    with open("usuários.txt", "r", encoding="utf8") as usuarios:
         for linha in usuarios:
             usuario = linha[:15]
             usuario_sem_espaco = usuario.strip()
@@ -52,10 +52,7 @@ if __name__ == '__main__':
         porcentagem = round(lista_espaco_utilizado[x] / sum(lista_espaco_utilizado) * 100, 2)
         tabela.append([x + 1, lista_usuarios[x], str(lista_espaco_utilizado[x]) + ' MB', str(porcentagem) + '%'])
 
-        try:
-            with open('relatório.txt', 'w') as relatorio:
-                relatorio.write(tabulate(tabela, headers="firstrow", tablefmt="srt"))
-        except Exception as e:
-            print("Exception:", e)
-
-    print(tabulate(tabela, headers="firstrow", tablefmt="srt"))
+    with open("relatório.txt", "w", encoding="utf8") as relatorio:
+        relatorio.write(tabulate(tabela, headers="firstrow", tablefmt="presto"))
+        relatorio.write(f"\n\nEspaço total ocupado: {sum(lista_espaco_utilizado)} MB")
+        relatorio.write(f"\nEspaço médio ocupado: {sum(lista_espaco_utilizado) / len(lista_usuarios):.2f} MB\n")
