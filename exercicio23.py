@@ -53,11 +53,9 @@ if __name__ == '__main__':
         tabela.append([x + 1, lista_usuarios[x], str(lista_espaco_utilizado[x]) + ' MB', str(porcentagem) + '%'])
 
         try:
-            relatorio = open('relatório.txt', 'w')
-            relatorio.write(tabulate(tabela, headers="firstrow", tablefmt="srt"))
-            relatorio.close()
+            with open('relatório.txt', 'w') as relatorio:
+                relatorio.write(tabulate(tabela, headers="firstrow", tablefmt="srt"))
         except Exception as e:
             print("Exception:", e)
-
 
     print(tabulate(tabela, headers="firstrow", tablefmt="srt"))
