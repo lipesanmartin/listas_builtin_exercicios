@@ -28,40 +28,55 @@
 # Total                    8800
 #
 # O Sistema Operacional mais votado foi o Unix, com 3500 votos, correspondendo a 40% dos votos.
+
+
 from tabulate import tabulate
 
 lista_sistemas = ["Windows Server", "Unix", "Linux", "Netware", "Mac OS", "Outro"]
 lista_votos = []
 tabela_resultados = [["Sistema Operacional", "Votos", "%"]]
 
-print("Qual o melhor Sistema Operacional para uso em servidores?")
-while True:  # entrada de dados
-    for x in range(6):
-        print(f"{x + 1}- {lista_sistemas[x]}")
-    voto = int(input())
-    if voto == 0:
-        break
-    elif voto in range(1, 7):
-        lista_votos.append(voto)
-    else:
-        print("Valor inválido. Digite 1 a 6 ou 0 para sair.")
 
-#  contagem de votos para cada sistema
-numero_de_votos = []
-for x in range(6):
-    contador = lista_votos.count(x + 1)
-    numero_de_votos.append(contador)
-mais_votos = max(numero_de_votos)
-ganhador = numero_de_votos.index(mais_votos)
+def entrada_dados():  # entrada de dados
+    while True:
+        try:
+            for i in range(6):
+                print(f"{i + 1}- {lista_sistemas[i]}")
+            voto = int(input())
+            if voto == 0:
+                break
+            elif voto in range(1, 7):
+                lista_votos.append(voto)
+            else:
+                print("Valor inválido. Digite 1 a 6 ou 0 para sair.")
+        except ValueError:
+            print("Valor inválido. Digite 1 a 6 ou 0 para sair.")
+    return lista_votos
+
+
+def contar_votos():  # contagem de votos para cada sistema
+    numero_de_votos = []
+    for x in range(6):
+        contador = lista_votos.count(x + 1)
+        numero_de_votos.append(contador)
+    return numero_de_votos
+
+
+print("Qual o melhor Sistema Operacional para uso em servidores?")
+
+entrada_dados()
+
+mais_votos = max(contar_votos())
+ganhador = contar_votos().index(mais_votos)
 
 #  montagem da lista tabela
 for x in range(6):
     lis = [lista_sistemas[x], lista_votos.count(x + 1)]
-    porcentagem = str(round((numero_de_votos[x] / len(lista_votos)) * 100)) + '%'
+    porcentagem = str(round((contar_votos()[x] / len(lista_votos)) * 100)) + '%'
     lis.append(porcentagem)
     tabela_resultados.append(lis)
 tabela_resultados.append(["Total", len(lista_votos)])
 print(tabulate(tabela_resultados, headers='firstrow', tablefmt='fancy_grid'))
 print(
     f"O sistema operacional mais votado foi o {lista_sistemas[ganhador]}, com {lista_votos.count(ganhador + 1)} votos,"
-    f" correspondendo a {int((numero_de_votos[ganhador] / len(lista_votos)) * 100)}% dos votos.")
+    f" correspondendo a {int((contar_votos()[ganhador] / len(lista_votos)) * 100)}% dos votos.")
