@@ -45,9 +45,16 @@
 
 from tabulate import tabulate
 
+
+def organizar_mais_votados(lista) -> list:  # devolve a lista sorteada pelo segundo elemento de suas sublistas
+    lista.sort(key=lambda i: i[1], reverse=True)
+    return lista
+
+
 lista_votos = []
 lista_jogadores_votados = []
-tabela_resultados = [["Jogador", "Votos", "%"]]
+tabela_resultados = []
+tabela_headers = ["Jogador", "Votos", "%"]
 while True:
     try:
         voto = int(input("Número do jogador (0=fim): "))
@@ -59,6 +66,7 @@ while True:
             print("Informe um valor entre 1 e 23 ou 0 para sair!")
     except ValueError:
         print("Informe um valor entre 1 e 23 ou 0 para sair!")
+
 # cria a lista de quantos votos cada jogador recebeu
 for x in range(23):
     a = lista_votos.count(x + 1)
@@ -71,13 +79,21 @@ for x in range(23):
     if lista_jogadores_votados[x] == mais_votos:
         melhor_jogador.append(str(x + 1))
 
+# cria a tabela de resultados final excluindo os que não receberam votos
 for x in range(23):
     linha_tab = [x + 1, lista_jogadores_votados[x]]
     porcentagem = f'{(lista_jogadores_votados[x] / len(lista_votos) * 100):.2f}' + '%'
     linha_tab.append(porcentagem)
-    tabela_resultados.append(linha_tab)
+    if linha_tab[1] != 0:
+        tabela_resultados.append(linha_tab)
 
-print(f"Resultado da votação:\n\nForam computados {len(lista_votos)} votos.\n")
-print(tabulate(tabela_resultados, headers='firstrow', tablefmt='rst'))
-print("O melhor jogador foi o número " + ', '.join(melhor_jogador) +
-      f", com {mais_votos} votos, correspondendo a {(mais_votos / len(lista_votos)) * 100:.2f}% do total de votos.")
+# organiza a tabela pelo numero de votos e adiciona os headers à tabela
+tabela_final = organizar_mais_votados(tabela_resultados)
+tabela_final.insert(0, tabela_headers)
+
+with open('resultados_ex18.txt', 'w', encoding='utf8') as resultados:
+    resultados.write(f"Resultado da votação:\n\nForam computados {len(lista_votos)} votos.\n")
+    resultados.write(tabulate(tabela_final, headers='firstrow', tablefmt='rst'))
+    resultados.write("O melhor jogador foi o número " + ', '.join(melhor_jogador) +
+                     f", com {mais_votos} votos, correspondendo a"
+                     f" {(mais_votos / len(lista_votos)) * 100:.2f}% do total de votos.")
