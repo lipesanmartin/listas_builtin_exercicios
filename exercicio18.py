@@ -94,6 +94,6 @@ tabela_final.insert(0, tabela_headers)
 with open('resultados_ex18.txt', 'w', encoding='utf8') as resultados:
     resultados.write(f"Resultado da votação:\n\nForam computados {len(lista_votos)} votos.\n")
     resultados.write(tabulate(tabela_final, headers='firstrow', tablefmt='rst'))
-    resultados.write("O melhor jogador foi o número " + ', '.join(melhor_jogador) +
+    resultados.write("\nO melhor jogador foi o número " + ', '.join(melhor_jogador) +
                      f", com {mais_votos} votos, correspondendo a"
                      f" {(mais_votos / len(lista_votos)) * 100:.2f}% do total de votos.")
