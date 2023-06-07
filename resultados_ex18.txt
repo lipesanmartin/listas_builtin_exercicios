@@ -1,0 +1,11 @@
+Resultado da votação:
+
+Foram computados 43 votos.
+=========  =======  ======
+  Jogador    Votos  %
+=========  =======  ======
+        3       18  41.86%
+        7        9  20.93%
+        4        8  18.60%
+        5        8  18.60%
+=========  =======  ======O melhor jogador foi o número 3, com 18 votos, correspondendo a 41.86% do total de votos.
